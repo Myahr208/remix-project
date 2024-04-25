@@ -1113,7 +1113,9 @@ export function Workspace() {
                   dispatchAddInputField={global.dispatchAddInputField}
                   dispatchHandleExpandPath={global.dispatchHandleExpandPath}
                   dispatchMoveFile={global.dispatchMoveFile}
+                  dispatchMoveFiles={global.dispatchMoveFiles}
                   dispatchMoveFolder={global.dispatchMoveFolder}
+                  dispatchMoveFolders={global.dispatchMoveFolders}
                   handleCopyClick={handleCopyClick}
                   handlePasteClick={handlePasteClick}
                   addMenuItems={addMenuItems}
@@ -1177,7 +1179,9 @@ export function Workspace() {
                   dispatchAddInputField={global.dispatchAddInputField}
                   dispatchHandleExpandPath={global.dispatchHandleExpandPath}
                   dispatchMoveFile={global.dispatchMoveFile}
+                  dispatchMoveFiles={global.dispatchMoveFiles}
                   dispatchMoveFolder={global.dispatchMoveFolder}
+                  dispatchMoveFolders={global.dispatchMoveFolders}
                   handleCopyClick={handleCopyClick}
                   handlePasteClick={handlePasteClick}
                   addMenuItems={addMenuItems}
