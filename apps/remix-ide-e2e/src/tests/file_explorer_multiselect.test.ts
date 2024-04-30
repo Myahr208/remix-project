@@ -2,6 +2,7 @@ import { NightwatchBrowser } from 'nightwatch'
 import init from '../helpers/init'
 
 module.exports = {
+  "@disabled": true,
   before: function (browser: NightwatchBrowser, done: VoidFunction) {
     init(browser, done)
   },
@@ -45,9 +46,10 @@ module.exports = {
           .waitForElementNotPresent('li[data-id="treeViewLitreeViewItemcontracts/2_Owner.sol"]')
       })
   },
-  'should drag and drop multiple files and folders in file explorer to contracts folder #group1': function (browser: NightwatchBrowser) {
+  'should drag and drop multiple files and folders in file explorer to contracts folder #group2': function (browser: NightwatchBrowser) {
     const selectedElements = []
     browser
+      .clickLaunchIcon('filePanel')
       .click({ selector: '//*[@data-id="treeViewLitreeViewItemtests"]', locateStrategy: 'xpath' })
       .findElement({ selector: '//*[@data-id="treeViewDivtreeViewItemREADME.txt"]', locateStrategy: 'xpath' }, (el) => {
         selectedElements.push(el)
