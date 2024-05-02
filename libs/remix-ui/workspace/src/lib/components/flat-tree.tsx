@@ -26,6 +26,7 @@ export default function useOnScreen(ref: RefObject<HTMLElement>) {
   return isIntersecting
 }
 interface FlatTreeProps {
+  onDragEnd: () => void
   files: { [x: string]: Record<string, FileType> },
   flatTree: FileType[],
   expandPath: string[],
@@ -129,6 +130,7 @@ export const FlatTree = (props: FlatTreeProps) => {
     })
     props.setFilesSelected([])
     setSelectedItems([])
+    props.onDragEnd()
   }
 
   const getFlatTreeItem = (path: string) => {

@@ -350,6 +350,12 @@ export const FileExplorer = (props: FileExplorerProps) => {
     })
   }
 
+  const onDragEnd = () => {
+    setState((prevState) => {
+      return { ...prevState, ctrlKey: false }
+    })
+  }
+
   const handleTreeClick = (event: SyntheticEvent) => {
     let target = event.target as HTMLElement
     while (target && target.getAttribute && !target.getAttribute('data-path')) {
@@ -405,6 +411,7 @@ export const FileExplorer = (props: FileExplorerProps) => {
           </div>
         </div>
         <FlatTree
+          onDragEnd={onDragEnd}
           handleTreeClick={handleTreeClick}
           focusEdit={state.focusEdit}
           focusElement={props.focusElement}
