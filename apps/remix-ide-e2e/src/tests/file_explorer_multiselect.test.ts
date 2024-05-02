@@ -51,11 +51,19 @@ module.exports = {
     browser
       .clickLaunchIcon('filePanel')
       .click({ selector: '//*[@data-id="treeViewLitreeViewItemtests"]', locateStrategy: 'xpath' })
-      .findElement({ selector: '//*[@data-id="treeViewDivtreeViewItemREADME.txt"]', locateStrategy: 'xpath' }, (el) => {
-        selectedElements.push(el)
+      .perform((done) => {
+        browser.findElement({ selector: '//*[@data-id="treeViewDivtreeViewItemREADME.txt"]', locateStrategy: 'xpath' }, (el) => {
+          selectedElements.push(el)
+          done()
+        })
+      })      
+      .perform((done) => {
+        console.log('selectFiles', selectedElements)
+        browser.selectFiles(selectedElements)
+        done()
       })
-    browser.selectFiles(selectedElements)
-    browser.findElement({ selector: '//*[@data-id="treeViewLitreeViewItemcontracts"]', locateStrategy: 'xpath' },
+      .selectFiles(selectedElements)
+      .findElement({ selector: '//*[@data-id="treeViewLitreeViewItemcontracts"]', locateStrategy: 'xpath' },
       (el: any) => {
         const id = (el as any).value.getId()
         browser
