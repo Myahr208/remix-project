@@ -150,37 +150,44 @@ const RemixApp = (props: IRemixAppUi) => {
       <platformContext.Provider value={props.app.platform}>
         <onLineContext.Provider value={online}>
           <AppProvider value={value}>
-            <OriginWarning></OriginWarning>
-            <MatomoDialog hide={!appReady} okFn={() => setShowEnterDialog(true)}></MatomoDialog>
-            {showEnterDialog && <EnterDialog handleUserChoice={(type) => handleUserChosenType(type)}></EnterDialog>}
-            <div className={`remixIDE ${appReady ? '' : 'd-none'}`} data-id="remixIDE">
-              <div id="icon-panel" data-id="remixIdeIconPanel" className="custom_icon_panel iconpanel bg-light">
-                {props.app.menuicons.render()}
+
+            <div className="d-flex flex-column">
+              <OriginWarning></OriginWarning>
+              <MatomoDialog hide={!appReady} okFn={() => setShowEnterDialog(true)}></MatomoDialog>
+              {showEnterDialog && <EnterDialog handleUserChoice={(type) => handleUserChosenType(type)}></EnterDialog>}
+              <div className={`remixIDE ${appReady ? '' : 'd-none'}`} data-id="remixIDE">
+                <div id="icon-panel" data-id="remixIdeIconPanel" className="custom_icon_panel iconpanel bg-light">
+                  {props.app.menuicons.render()}
+                </div>
+                <div
+                  ref={sidePanelRef}
+                  id="side-panel"
+                  data-id="remixIdeSidePanel"
+                  className={`sidepanel border-right border-left ${hideSidePanel ? 'd-none' : ''}`}
+                >
+                  {props.app.sidePanel.render()}
+                </div>
+                <DragBar
+                  resetTrigger={resetTrigger}
+                  maximiseTrigger={maximiseTrigger}
+                  minWidth={285}
+                  refObject={sidePanelRef}
+                  hidden={hideSidePanel}
+                  setHideStatus={setHideSidePanel}
+                ></DragBar>
+                <div id="main-panel" data-id="remixIdeMainPanel" className="mainpanel d-flex">
+                  <RemixUIMainPanel layout={props.app.layout}></RemixUIMainPanel>
+                  <CustomTooltip placement="bottom" tooltipId="overlay-tooltip-all-tabs" tooltipText={<FormattedMessage id="remixApp.scrollToSeeAllTabs" />}>
+                    <div className="remix-ui-tabs_end remix-bg-opacity position-absolute position-fixed"></div>
+                  </CustomTooltip>
+                </div>
               </div>
-              <div
-                ref={sidePanelRef}
-                id="side-panel"
-                data-id="remixIdeSidePanel"
-                className={`sidepanel border-right border-left ${hideSidePanel ? 'd-none' : ''}`}
-              >
-                {props.app.sidePanel.render()}
-              </div>
-              <DragBar
-                resetTrigger={resetTrigger}
-                maximiseTrigger={maximiseTrigger}
-                minWidth={285}
-                refObject={sidePanelRef}
-                hidden={hideSidePanel}
-                setHideStatus={setHideSidePanel}
-              ></DragBar>
-              <div id="main-panel" data-id="remixIdeMainPanel" className="mainpanel d-flex">
-                <RemixUIMainPanel layout={props.app.layout}></RemixUIMainPanel>
-                <CustomTooltip placement="bottom" tooltipId="overlay-tooltip-all-tabs" tooltipText={<FormattedMessage id="remixApp.scrollToSeeAllTabs" />}>
-                  <div className="remix-ui-tabs_end remix-bg-opacity position-absolute position-fixed"></div>
-                </CustomTooltip>
-              </div>
+              <div>{props.app.hiddenPanel.render()}</div>
             </div>
-            <div>{props.app.hiddenPanel.render()}</div>
+            <div className="statusBar fixed-bottom bg-primary">
+              <h4>StatusBar</h4>
+              {props.app.statusBar.render()}
+            </div>
             <AppDialogs></AppDialogs>
             <DialogViewPlugin></DialogViewPlugin>
           </AppProvider>
