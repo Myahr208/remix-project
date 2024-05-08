@@ -302,7 +302,6 @@ class AppComponent {
 
     const permissionHandler = new PermissionHandlerPlugin()
 
-
     this.engine.register([
       permissionHandler,
       this.layout,
@@ -385,6 +384,7 @@ class AppComponent {
     this.statusBar = new StatusBar()
     this.hiddenPanel = new HiddenPanel()
 
+    console.log('statusplugin', this.statusBar)
     const pluginManagerComponent = new PluginManagerComponent(appManager, this.engine)
     const filePanel = new FilePanel(appManager)
     const landingPage = new LandingPage(appManager, this.menuicons, fileManager, filePanel, contentImport)
@@ -470,8 +470,8 @@ class AppComponent {
       'web3Provider',
       'offsetToLineColumnConverter'
     ])
-    await this.appManager.activatePlugin(['statusBar'])
     await this.appManager.activatePlugin(['mainPanel', 'menuicons', 'tabs'])
+    await this.appManager.activatePlugin(['statusBar'])
     await this.appManager.activatePlugin(['sidePanel']) // activating  host plugin separately
     await this.appManager.activatePlugin(['home'])
     await this.appManager.activatePlugin(['settings', 'config'])
