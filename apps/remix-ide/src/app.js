@@ -384,7 +384,6 @@ class AppComponent {
     this.statusBar = new StatusBar()
     this.hiddenPanel = new HiddenPanel()
 
-    console.log('statusplugin', this.statusBar)
     const pluginManagerComponent = new PluginManagerComponent(appManager, this.engine)
     const filePanel = new FilePanel(appManager)
     const landingPage = new LandingPage(appManager, this.menuicons, fileManager, filePanel, contentImport)
