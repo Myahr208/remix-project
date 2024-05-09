@@ -143,7 +143,7 @@ const RemixApp = (props: IRemixAppUi) => {
     }
 
   }
-
+  console.log('statusbar', props.app.statusBar)
   return (
     //@ts-ignore
     <IntlProvider locale={locale.code} messages={locale.messages}>
@@ -185,7 +185,6 @@ const RemixApp = (props: IRemixAppUi) => {
               <div>{props.app.hiddenPanel.render()}</div>
             </div>
             <div className="statusBar fixed-bottom">
-              <h4>StatusBar</h4>
               {props.app.statusBar.render()}
             </div>
             <AppDialogs></AppDialogs>
