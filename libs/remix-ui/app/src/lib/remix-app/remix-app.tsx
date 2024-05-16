@@ -184,6 +184,7 @@ const RemixApp = (props: IRemixAppUi) => {
               </div>
               <div>{props.app.hiddenPanel.render()}</div>
             </div>
+
             <div className="statusBar fixed-bottom">
               {props.app.statusBar.render()}
             </div>
